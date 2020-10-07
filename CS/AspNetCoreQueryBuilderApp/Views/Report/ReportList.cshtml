@@ -1,0 +1,31 @@
+@model IEnumerable<AspNetCoreQueryBuilderApp.Models.ReportModel>
+
+@{
+    ViewData["Title"] = "Reporting";
+}
+
+<form method="post">
+    <div class="d-flex justify-content-between align-items-center" style="margin: 10px;">
+        <h4>Reports</h4>
+        <button type="submit" asp-controller="Report" asp-action="Design" class="btn btn-primary btn-xs float-right">
+            Add new
+        </button>
+    </div>
+    <ul class="list-group">
+        @foreach(var item in Model) {
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                @item.Title
+                <div class="float-right action-buttons">
+                    <div class="btn-group float-right">
+                        <button type="submit" asp-controller="Report" asp-action="Design" asp-route-id=@item.Id asp-route-title=@item.Title class="btn btn-primary btn-xs">
+                            Edit
+                        </button>
+                        <button type="submit" asp-controller="Report" asp-action="Remove" asp-route-reportId=@item.Id class="btn btn-primary btn-xs">
+                            Remove
+                        </button>
+                    </div>
+                </div>
+            </li>
+        }
+    </ul>
+</form>

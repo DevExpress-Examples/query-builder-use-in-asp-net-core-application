@@ -1,0 +1,41 @@
+@model DevExpress.XtraReports.Web.ReportDesigner.ReportDesignerModel
+
+<link href="~/css/querybuilder.part.bundle.css" rel="stylesheet" />
+<link href="~/css/designer.part.bundle.css" rel="stylesheet" />
+<script src="~/js/querybuilder.part.bundle.js"></script>
+<script src="~/js/designer.part.bundle.js"></script>
+<script>
+    function ReportDesignerBeforeRender(event) {
+        event.RunWizard("DesignInReportWizard");
+    }
+    function afterReportWizardInit(args) {
+        var defaultGetNextPageId = args.wizard.iterator.getNextPageId;
+        args.wizard.iterator.getNextPageId = function(pageId) {
+            if(!pageId) {
+                return DevExpress.Reporting.Designer.Wizard.FullscreenReportWizardPageId.SelectDataSourcePage;
+            } else {
+                return defaultGetNextPageId.apply(this, [pageId]);
+            }
+        }
+    }
+
+    function CustomizeWizard(s, e) {
+        if(e.Type === "ReportWizard") {
+            e.Wizard.events.addHandler("afterInitialize", afterReportWizardInit);
+        }
+    }
+
+    function ReportDesignerExit() {
+        window.location = "/";
+    }
+</script>
+@(Html.DevExpress().ReportDesigner("ReportDesigner")
+        .Height("800px")
+        .ClientSideEvents(events => {
+            if(Model.DataSources.Length > 0) {
+                events.BeforeRender("ReportDesignerBeforeRender");
+                events.CustomizeWizard("CustomizeWizard");
+            }
+            events.ExitDesigner("ReportDesignerExit");
+        })
+        .Bind(Model))
