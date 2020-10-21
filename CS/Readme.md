@@ -16,15 +16,15 @@ The application implements custom storage services to save data sources and repo
 The data source storage service is the **DataSourceStorageService** class.
 
 Files to look at: 
-- [ReportStorageService.cs](./AspNetCoreQueryBuilderApp/Services/ReportStorageService.cs)
-- [DataSourceStorageService.cs](./AspNetCoreQueryBuilderApp/Services/DataSourceStorageService.cs)
+- [ReportStorageService.cs](./CS/AspNetCoreQueryBuilderApp/Services/ReportStorageService.cs)
+- [DataSourceStorageService.cs](./CS/AspNetCoreQueryBuilderApp/Services/DataSourceStorageService.cs)
 
 ### Connection Strings
 
 The reports use data from the external data source - the nwind.db database populated with Northwind data. The application has no direct access to connection srings in the `appsettings.json` file and requests a connection string provider from the CustomConnectionProviderFactory service (the [IConnectionProviderFactory](https://docs.devexpress.com/CoreLibraries/DevExpress.DataAccess.Web.IConnectionProviderFactory) implementation). The connection string provider is the CustomConnectionProvider class that implements the [IConnectionProviderService](https://docs.devexpress.com/CoreLibraries/DevExpress.DataAccess.Wizard.Services.IConnectionProviderService) interface.
 
 File to look at: 
-- [CustomConnectionProvider.cs](./AspNetCoreQueryBuilderApp/Services/CustomConnectionProvider.cs)
+- [CustomConnectionProvider.cs](./CS/AspNetCoreQueryBuilderApp/Services/CustomConnectionProvider.cs)
 
 ### Query Builder Control
 
@@ -70,9 +70,9 @@ public IActionResult QueryBuilder(
 ```
 
 Files to look at: 
-- [Startup.cs](./AspNetCoreQueryBuilderApp/Services/Startup.cs)
-- [_ViewImports.cshtml](./AspNetCoreQueryBuilderApp/Views/_ViewImports.cshtml)
-- [HomeController.cs](./AspNetCoreQueryBuilderApp/Controllers/HomeController.cs)
+- [Startup.cs](./CS/AspNetCoreQueryBuilderApp/Services/Startup.cs)
+- [_ViewImports.cshtml](./CS/AspNetCoreQueryBuilderApp/Views/_ViewImports.cshtml)
+- [HomeController.cs](./CS/AspNetCoreQueryBuilderApp/Controllers/HomeController.cs)
 
 ### SaveQueryRequested Event
 When a user clicks the Save button in the Query Builder toolbar, the Query Builder raises the **SaveQueryRequested** client-side event. The event handler function calls the **GetSaveQueryModel** method to retrieve the model with the serialized data and uses the Ajax request to send the model to the server-side controller method:
@@ -110,7 +110,7 @@ public async Task<IActionResult> SaveQuery(
 The [SqlDataSource](https://docs.devexpress.com/CoreLibraries/DevExpress.DataAccess.Sql.SqlDataSource) object is extracted from the model, serialized and saved to the database.
 
 Files to look at: 
-- [QueryBuilder.cshtml](./AspNetCoreQueryBuilderApp/Views/Home/QueryBuilder.cshtml)
-- [HomeController.cs](./AspNetCoreQueryBuilderApp/Controllers/HomeController.cs)
-- [SerializationService.cs](./AspNetCoreQueryBuilderApp/Services/SerializationService.cs)
+- [QueryBuilder.cshtml](./CS/AspNetCoreQueryBuilderApp/Views/Home/QueryBuilder.cshtml)
+- [HomeController.cs](./CS/AspNetCoreQueryBuilderApp/Controllers/HomeController.cs)
+- [SerializationService.cs](./CS/AspNetCoreQueryBuilderApp/Services/SerializationService.cs)
 
