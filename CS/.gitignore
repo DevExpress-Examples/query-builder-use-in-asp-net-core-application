@@ -307,3 +307,10 @@ TesterMetadata.xml
 .bak
 
 **/application.db
+
+**/wwwroot/css/designer.part.bundle.css
+**/wwwroot/css/thirdparty.bundle.css
+**/wwwroot/css/querybuilder.part.bundle.css
+**/wwwroot/js
+**/wwwroot/css/icons
+**/package-lock.json
