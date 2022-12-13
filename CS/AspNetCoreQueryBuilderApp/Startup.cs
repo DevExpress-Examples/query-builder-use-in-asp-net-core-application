@@ -35,10 +35,8 @@ namespace AspNetCoreQueryBuilderApp {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("ApplicationDefaultConnection")));
 
-            var builder = services
-                .AddMvc()
-                .AddNewtonsoftJson()
-                .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
+            var builder = services.AddControllersWithViews()
+               .AddNewtonsoftJson();
 #if DEBUG
             if(Env.IsDevelopment()) {
                 builder.AddRazorRuntimeCompilation();
