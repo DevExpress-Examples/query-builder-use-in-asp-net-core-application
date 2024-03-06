@@ -118,4 +118,3 @@ Files to look at:
 - [QueryBuilder.cshtml](./CS/AspNetCoreQueryBuilderApp/Views/Home/QueryBuilder.cshtml)
 - [HomeController.cs](./CS/AspNetCoreQueryBuilderApp/Controllers/HomeController.cs)
 - [SerializationService.cs](./CS/AspNetCoreQueryBuilderApp/Services/SerializationService.cs)
-
