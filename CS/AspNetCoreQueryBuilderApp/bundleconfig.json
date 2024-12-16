@@ -64,6 +64,7 @@
       "node_modules/devextreme-dist/js/dx.all.js",
 
       "node_modules/ace-builds/src-min-noconflict/ace.js",
+      "node_modules/ace-builds/src-min-noconflict/ext-language_tools.js",
       "node_modules/ace-builds/src-min-noconflict/snippets/text.js"
     ],
     "minify": {
